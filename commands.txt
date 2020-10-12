@@ -1,5 +1,6 @@
 terraform init
 terraform validate
+cp terraform.tfvars.example terraform.tfvars > Add your Access and Secret Key
 terraform plan -out terraform.tfplan
 terraform apply "terraform.tfplan"
 terraform destroy
