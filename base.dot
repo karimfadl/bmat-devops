@@ -1,0 +1,112 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] aws_autoscaling_group.example-autoscaling (expand)" [label = "aws_autoscaling_group.example-autoscaling", shape = "box"]
+		"[root] aws_autoscaling_policy.sqs-policy-scaledown (expand)" [label = "aws_autoscaling_policy.sqs-policy-scaledown", shape = "box"]
+		"[root] aws_autoscaling_policy.sqs-policy-scaleup (expand)" [label = "aws_autoscaling_policy.sqs-policy-scaleup", shape = "box"]
+		"[root] aws_cloudwatch_metric_alarm.queue-depth-alarm-scaledown (expand)" [label = "aws_cloudwatch_metric_alarm.queue-depth-alarm-scaledown", shape = "box"]
+		"[root] aws_cloudwatch_metric_alarm.queue-depth-alarm-scaleup (expand)" [label = "aws_cloudwatch_metric_alarm.queue-depth-alarm-scaleup", shape = "box"]
+		"[root] aws_elasticache_replication_group.redis-rg (expand)" [label = "aws_elasticache_replication_group.redis-rg", shape = "box"]
+		"[root] aws_elasticache_subnet_group.redis-sg (expand)" [label = "aws_elasticache_subnet_group.redis-sg", shape = "box"]
+		"[root] aws_elb.my-elb (expand)" [label = "aws_elb.my-elb", shape = "box"]
+		"[root] aws_internet_gateway.main-gw (expand)" [label = "aws_internet_gateway.main-gw", shape = "box"]
+		"[root] aws_key_pair.mykeypair (expand)" [label = "aws_key_pair.mykeypair", shape = "box"]
+		"[root] aws_launch_configuration.example-launchconfig (expand)" [label = "aws_launch_configuration.example-launchconfig", shape = "box"]
+		"[root] aws_route_table.main-public (expand)" [label = "aws_route_table.main-public", shape = "box"]
+		"[root] aws_route_table_association.main-public-1-a (expand)" [label = "aws_route_table_association.main-public-1-a", shape = "box"]
+		"[root] aws_route_table_association.main-public-2-a (expand)" [label = "aws_route_table_association.main-public-2-a", shape = "box"]
+		"[root] aws_route_table_association.main-public-3-a (expand)" [label = "aws_route_table_association.main-public-3-a", shape = "box"]
+		"[root] aws_security_group.elb-securitygroup (expand)" [label = "aws_security_group.elb-securitygroup", shape = "box"]
+		"[root] aws_security_group.myinstance (expand)" [label = "aws_security_group.myinstance", shape = "box"]
+		"[root] aws_security_group.redis-sg (expand)" [label = "aws_security_group.redis-sg", shape = "box"]
+		"[root] aws_sqs_queue.sqs_queue (expand)" [label = "aws_sqs_queue.sqs_queue", shape = "box"]
+		"[root] aws_subnet.main-private-1 (expand)" [label = "aws_subnet.main-private-1", shape = "box"]
+		"[root] aws_subnet.main-private-2 (expand)" [label = "aws_subnet.main-private-2", shape = "box"]
+		"[root] aws_subnet.main-private-3 (expand)" [label = "aws_subnet.main-private-3", shape = "box"]
+		"[root] aws_subnet.main-public-1 (expand)" [label = "aws_subnet.main-public-1", shape = "box"]
+		"[root] aws_subnet.main-public-2 (expand)" [label = "aws_subnet.main-public-2", shape = "box"]
+		"[root] aws_subnet.main-public-3 (expand)" [label = "aws_subnet.main-public-3", shape = "box"]
+		"[root] aws_vpc.main (expand)" [label = "aws_vpc.main", shape = "box"]
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" [label = "provider[\"registry.terraform.io/hashicorp/aws\"]", shape = "diamond"]
+		"[root] var.AMIS" [label = "var.AMIS", shape = "note"]
+		"[root] var.AWS_ACCESS_KEY" [label = "var.AWS_ACCESS_KEY", shape = "note"]
+		"[root] var.AWS_REGION" [label = "var.AWS_REGION", shape = "note"]
+		"[root] var.AWS_SECRET_KEY" [label = "var.AWS_SECRET_KEY", shape = "note"]
+		"[root] var.INSTANCE_USERNAME" [label = "var.INSTANCE_USERNAME", shape = "note"]
+		"[root] var.PATH_TO_PRIVATE_KEY" [label = "var.PATH_TO_PRIVATE_KEY", shape = "note"]
+		"[root] var.PATH_TO_PUBLIC_KEY" [label = "var.PATH_TO_PUBLIC_KEY", shape = "note"]
+		"[root] var.cluster_id" [label = "var.cluster_id", shape = "note"]
+		"[root] aws_autoscaling_group.example-autoscaling (expand)" -> "[root] aws_elb.my-elb (expand)"
+		"[root] aws_autoscaling_group.example-autoscaling (expand)" -> "[root] aws_launch_configuration.example-launchconfig (expand)"
+		"[root] aws_autoscaling_policy.sqs-policy-scaledown (expand)" -> "[root] aws_autoscaling_group.example-autoscaling (expand)"
+		"[root] aws_autoscaling_policy.sqs-policy-scaleup (expand)" -> "[root] aws_autoscaling_group.example-autoscaling (expand)"
+		"[root] aws_cloudwatch_metric_alarm.queue-depth-alarm-scaledown (expand)" -> "[root] aws_autoscaling_policy.sqs-policy-scaledown (expand)"
+		"[root] aws_cloudwatch_metric_alarm.queue-depth-alarm-scaleup (expand)" -> "[root] aws_autoscaling_policy.sqs-policy-scaleup (expand)"
+		"[root] aws_elasticache_replication_group.redis-rg (expand)" -> "[root] aws_elasticache_subnet_group.redis-sg (expand)"
+		"[root] aws_elasticache_replication_group.redis-rg (expand)" -> "[root] aws_security_group.redis-sg (expand)"
+		"[root] aws_elasticache_replication_group.redis-rg (expand)" -> "[root] var.cluster_id"
+		"[root] aws_elasticache_subnet_group.redis-sg (expand)" -> "[root] aws_subnet.main-public-1 (expand)"
+		"[root] aws_elasticache_subnet_group.redis-sg (expand)" -> "[root] aws_subnet.main-public-2 (expand)"
+		"[root] aws_elasticache_subnet_group.redis-sg (expand)" -> "[root] aws_subnet.main-public-3 (expand)"
+		"[root] aws_elb.my-elb (expand)" -> "[root] aws_security_group.elb-securitygroup (expand)"
+		"[root] aws_elb.my-elb (expand)" -> "[root] aws_subnet.main-public-1 (expand)"
+		"[root] aws_elb.my-elb (expand)" -> "[root] aws_subnet.main-public-2 (expand)"
+		"[root] aws_elb.my-elb (expand)" -> "[root] aws_subnet.main-public-3 (expand)"
+		"[root] aws_internet_gateway.main-gw (expand)" -> "[root] aws_vpc.main (expand)"
+		"[root] aws_key_pair.mykeypair (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_key_pair.mykeypair (expand)" -> "[root] var.PATH_TO_PUBLIC_KEY"
+		"[root] aws_launch_configuration.example-launchconfig (expand)" -> "[root] aws_key_pair.mykeypair (expand)"
+		"[root] aws_launch_configuration.example-launchconfig (expand)" -> "[root] aws_security_group.myinstance (expand)"
+		"[root] aws_launch_configuration.example-launchconfig (expand)" -> "[root] var.AMIS"
+		"[root] aws_route_table.main-public (expand)" -> "[root] aws_internet_gateway.main-gw (expand)"
+		"[root] aws_route_table_association.main-public-1-a (expand)" -> "[root] aws_route_table.main-public (expand)"
+		"[root] aws_route_table_association.main-public-1-a (expand)" -> "[root] aws_subnet.main-public-1 (expand)"
+		"[root] aws_route_table_association.main-public-2-a (expand)" -> "[root] aws_route_table.main-public (expand)"
+		"[root] aws_route_table_association.main-public-2-a (expand)" -> "[root] aws_subnet.main-public-2 (expand)"
+		"[root] aws_route_table_association.main-public-3-a (expand)" -> "[root] aws_route_table.main-public (expand)"
+		"[root] aws_route_table_association.main-public-3-a (expand)" -> "[root] aws_subnet.main-public-3 (expand)"
+		"[root] aws_security_group.elb-securitygroup (expand)" -> "[root] aws_vpc.main (expand)"
+		"[root] aws_security_group.myinstance (expand)" -> "[root] aws_security_group.elb-securitygroup (expand)"
+		"[root] aws_security_group.myinstance (expand)" -> "[root] aws_security_group.redis-sg (expand)"
+		"[root] aws_security_group.redis-sg (expand)" -> "[root] aws_vpc.main (expand)"
+		"[root] aws_sqs_queue.sqs_queue (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_subnet.main-private-1 (expand)" -> "[root] aws_vpc.main (expand)"
+		"[root] aws_subnet.main-private-2 (expand)" -> "[root] aws_vpc.main (expand)"
+		"[root] aws_subnet.main-private-3 (expand)" -> "[root] aws_vpc.main (expand)"
+		"[root] aws_subnet.main-public-1 (expand)" -> "[root] aws_vpc.main (expand)"
+		"[root] aws_subnet.main-public-2 (expand)" -> "[root] aws_vpc.main (expand)"
+		"[root] aws_subnet.main-public-3 (expand)" -> "[root] aws_vpc.main (expand)"
+		"[root] aws_vpc.main (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_cloudwatch_metric_alarm.queue-depth-alarm-scaledown (expand)"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_cloudwatch_metric_alarm.queue-depth-alarm-scaleup (expand)"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_elasticache_replication_group.redis-rg (expand)"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_route_table_association.main-public-1-a (expand)"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_route_table_association.main-public-2-a (expand)"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_route_table_association.main-public-3-a (expand)"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_sqs_queue.sqs_queue (expand)"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_subnet.main-private-1 (expand)"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_subnet.main-private-2 (expand)"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_subnet.main-private-3 (expand)"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] output.ELB (expand)"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] var.INSTANCE_USERNAME"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] var.PATH_TO_PRIVATE_KEY"
+		"[root] output.ELB (expand)" -> "[root] aws_elb.my-elb (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_cloudwatch_metric_alarm.queue-depth-alarm-scaledown (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_cloudwatch_metric_alarm.queue-depth-alarm-scaleup (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_elasticache_replication_group.redis-rg (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_route_table_association.main-public-1-a (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_route_table_association.main-public-2-a (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_route_table_association.main-public-3-a (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_sqs_queue.sqs_queue (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_subnet.main-private-1 (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_subnet.main-private-2 (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_subnet.main-private-3 (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" -> "[root] var.AWS_ACCESS_KEY"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" -> "[root] var.AWS_REGION"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" -> "[root] var.AWS_SECRET_KEY"
+		"[root] root" -> "[root] meta.count-boundary (EachMode fixup)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)"
+	}
+}
+
