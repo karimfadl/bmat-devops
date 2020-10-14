@@ -1,6 +1,6 @@
 resource "aws_elasticache_subnet_group" "redis-sg" {
   name       = "redis-cache-subnet"
-  subnet_ids = [aws_subnet.main-public-1.id, aws_subnet.main-public-2.id, aws_subnet.main-public-3.id]
+  subnet_ids = [aws_subnet.main-private-1.id, aws_subnet.main-private-2.id]
 }
 
 resource "aws_elasticache_replication_group" "redis-rg" {
